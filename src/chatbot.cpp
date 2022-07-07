@@ -30,7 +30,7 @@ ChatBot::ChatBot(std::string filename)
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
-ChatBot::~ChatBot()
+ChatBot::~ChatBot() // 1. Destructor
 {
     std::cout << "ChatBot Destructor" << std::endl;
 
@@ -44,7 +44,75 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+ChatBot::ChatBot(const ChatBot &source) // 2. Copy constructor
+{
+    std::cout << "ChatBot Copy Constructor:  From instance " << &source << "to " << this  << std::endl;
 
+    _image = new wxBitmap();
+    _currentNode = new GraphNode(source._currentNode->GetID());
+    _rootNode = new GraphNode(source._rootNode->GetID());
+    _chatLogic = new ChatLogic;
+
+    *_image = *source._image;
+    *_currentNode = *source._currentNode;
+    *_rootNode = *source._rootNode;
+    *_chatLogic = *source._chatLogic;
+
+}
+ChatBot& ChatBot::operator=(const ChatBot &source) //3. Copy assignment operator
+{
+    std::cout << "ChatBot Copy Assignment Operator: From instance " << &source << "to " << this << std::endl;
+
+    if (this == &source);
+        return *this;
+
+    delete _image;
+
+    _image = new wxBitmap();
+    _currentNode = new GraphNode(source._currentNode->GetID());
+    _rootNode = new GraphNode(source._rootNode->GetID());
+    _chatLogic = new ChatLogic;
+
+    *_image = *source._image;
+    *_currentNode = *source._currentNode;
+    *_rootNode = *source._rootNode;
+    *_chatLogic = *source._chatLogic;
+
+    return *this;
+}
+ChatBot::ChatBot(ChatBot &&source) // 4. Move Constructor
+{
+    std::cout << "ChatBot Move Constructor: From instance " << &source << "to " << this << std::endl;
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    source._image = nullptr;
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+
+}
+ChatBot& ChatBot::operator=(ChatBot &&source) // 5. Move assignment operator
+{
+    std::cout << "ChatBot Move Assignment: From instance " << &source << "to " << this << std::endl;
+
+    if (this == &source)
+        return *this;
+
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    source._image = nullptr;
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+
+    return *this;
+}
 ////
 //// EOF STUDENT CODE
 
