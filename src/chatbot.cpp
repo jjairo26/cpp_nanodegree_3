@@ -49,14 +49,11 @@ ChatBot::ChatBot(const ChatBot &source) // 2. Copy constructor
     std::cout << "ChatBot Copy Constructor:  From instance " << &source << "to " << this  << std::endl;
 
     _image = new wxBitmap();
-    _currentNode = new GraphNode(source._currentNode->GetID());
-    _rootNode = new GraphNode(source._rootNode->GetID());
-    _chatLogic = new ChatLogic;
-
     *_image = *source._image;
-    *_currentNode = *source._currentNode;
-    *_rootNode = *source._rootNode;
-    *_chatLogic = *source._chatLogic;
+
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
 
 }
 ChatBot& ChatBot::operator=(const ChatBot &source) //3. Copy assignment operator
@@ -69,14 +66,14 @@ ChatBot& ChatBot::operator=(const ChatBot &source) //3. Copy assignment operator
     delete _image;
 
     _image = new wxBitmap();
-    _currentNode = new GraphNode(source._currentNode->GetID());
+  /* _currentNode = new GraphNode(source._currentNode->GetID());
     _rootNode = new GraphNode(source._rootNode->GetID());
-    _chatLogic = new ChatLogic;
+    _chatLogic = new ChatLogic;*/
 
     *_image = *source._image;
-    *_currentNode = *source._currentNode;
-    *_rootNode = *source._rootNode;
-    *_chatLogic = *source._chatLogic;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
 
     return *this;
 }
