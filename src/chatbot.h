@@ -13,10 +13,13 @@ private:
     // data handles (owned)
     wxBitmap *_image; // avatar image
 
-    // data handles (not owned)
+    // data handles (not owned) 
+    
+    // Dear Reviewer: what does this mean?
+    // Does this mean that the memory for "not owned" variables is not allocated by the constructor of this class?
     GraphNode *_currentNode;
     GraphNode *_rootNode;
-    ChatLogic *_chatLogic;
+    ChatLogic *_chatLogic; // Dear Reviewer: Why is this actually allowed even though chatgui.h declared it as a unique pointer?
 
     // proprietary functions
     int ComputeLevenshteinDistance(std::string s1, std::string s2);

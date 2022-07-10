@@ -70,7 +70,7 @@ ChatBot& ChatBot::operator=(const ChatBot &source) //3. Copy assignment operator
     _image = new wxBitmap();
   /* _currentNode = new GraphNode(source._currentNode->GetID());
     _rootNode = new GraphNode(source._rootNode->GetID());
-    _chatLogic = new ChatLogic;*/
+    _chatLogic = new ChatLogic;*/ //                            Dear Reviewer: Why is this not needed?
 
     *_image = *source._image;
     _currentNode = source._currentNode;
