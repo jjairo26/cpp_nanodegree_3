@@ -46,7 +46,7 @@ ChatBot::~ChatBot() // 1. Destructor
 ////
 ChatBot::ChatBot(const ChatBot &source) // 2. Copy constructor
 {
-    std::cout << "ChatBot Copy Constructor:  From instance " << &source << "to " << this  << std::endl;
+    std::cout << "ChatBot Copy Constructor:  From instance " << &source << " to " << this  << std::endl;
 
     _image = new wxBitmap();
     *_image = *source._image;
@@ -54,11 +54,13 @@ ChatBot::ChatBot(const ChatBot &source) // 2. Copy constructor
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+
 
 }
 ChatBot& ChatBot::operator=(const ChatBot &source) //3. Copy assignment operator
 {
-    std::cout << "ChatBot Copy Assignment Operator: From instance " << &source << "to " << this << std::endl;
+    std::cout << "ChatBot Copy Assignment Operator: From instance " << &source << " to " << this << std::endl;
 
     if (this == &source);
         return *this;
@@ -74,12 +76,13 @@ ChatBot& ChatBot::operator=(const ChatBot &source) //3. Copy assignment operator
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
     return *this;
 }
 ChatBot::ChatBot(ChatBot &&source) // 4. Move Constructor
 {
-    std::cout << "ChatBot Move Constructor: From instance " << &source << "to " << this << std::endl;
+    std::cout << "ChatBot Move Constructor: From instance " << &source << " to " << this << std::endl;
     _image = source._image;
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
@@ -94,7 +97,7 @@ ChatBot::ChatBot(ChatBot &&source) // 4. Move Constructor
 }
 ChatBot& ChatBot::operator=(ChatBot &&source) // 5. Move assignment operator
 {
-    std::cout << "ChatBot Move Assignment: From instance " << &source << "to " << this << std::endl;
+    std::cout << "ChatBot Move Assignment: From instance " << &source << " to " << this << std::endl;
 
     if (this == &source)
         return *this;

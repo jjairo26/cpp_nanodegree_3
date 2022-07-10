@@ -17,14 +17,14 @@
 
 ChatLogic::ChatLogic()
 {
-    //// STUDENT CODE
-    ////
+    //// STUDENT CODE 
+    //// // Task 5: Deleted as ChatLogic is no longer responsible for memory allocation and deallocation
 
     // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
+   // _chatBot = new ChatBot("../images/chatbot.png");
 
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    //_chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -36,7 +36,7 @@ ChatLogic::~ChatLogic()
     ////
 
     // delete chatbot instance
-    delete _chatBot;
+   // delete _chatBot; // Task 5: Deleted as ChatLogic is no longer responsible for memory allocation and deallocation
 
     // delete all nodes // Task 3
     /*for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
@@ -225,7 +225,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
     // add chatbot to graph root node
     _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(*_chatBot);
+    rootNode->MoveChatbotHere(std::move(chatbot));
     
     ////
     //// EOF STUDENT CODE
