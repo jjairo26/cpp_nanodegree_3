@@ -183,6 +183,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
+    //Dear Reviewer: Why does this have to be exactly here? Why don#t we use a pointer here (and new Chatbot)?
     ChatBot chatbot = ChatBot("../images/chatbot.png");
     
     chatbot.SetChatLogicHandle(this);
